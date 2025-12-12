@@ -4,14 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const outIn = document.getElementById('displayInput');
   const outOut = document.getElementById('displayOutput');
 
-  const homeInput = document.getElementById('btnHomeInput');
   const homeOutput = document.getElementById('btnHomeOutput');
 
   function removeSpaces(text) {
     return String(text || '').replace(/\s+/g, '');
   }
 
-  
   if (btn && inputEl && outIn && outOut) {
     btn.addEventListener('click', () => {
       const raw = inputEl.value || '';
@@ -23,8 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
   const homeUrl = 'https://masapa1.github.io/M1-FA3/';
-  if (homeInput) homeInput.addEventListener('click', () => { window.location.href = homeUrl; });
-  if (homeOutput) homeOutput.addEventListener('click', () => { window.location.href = homeUrl; });
+  if (homeOutput) {
+    homeOutput.addEventListener('click', () => {
+      window.location.href = homeUrl;
+    });
+  }
 });
