@@ -15,20 +15,43 @@
       <input id="txtInput" type="text" placeholder="Type here... e.g. Clyde Balamar" />
     </div>
 
-    <!-- Home button below input -->
-    <button id="btnHomeInput" class="home-small">Home</button>
-
     <button id="btnReplaceAll" class="big-btn">Remove Spaces</button>
 
     <div class="result-card" aria-live="polite">
       <div class="result-row"><span class="label">Input:</span> <span id="displayInput" class="value">-</span></div>
       <div class="result-row"><span class="label">Output:</span> <span id="displayOutput" class="value">-</span></div>
     </div>
-
-    <!-- Home button below result card -->
+    
     <button id="btnHomeOutput" class="home-small">Home</button>
   </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnHomeInput = document.getElementById('btnHomeInput');
+            const btnHomeOutput = document.getElementById('btnHomeOutput');
+            const btnReplaceAll = document.getElementById('btnReplaceAll');
+            const txtInput = document.getElementById('txtInput');
+            const displayInput = document.getElementById('displayInput');
+            const displayOutput = document.getElementById('displayOutput');
 
-  <script src="MP1.js"></script>
+            // Home navigation buttons
+            const goHome = () => {
+                window.location.href = 'https://masapa1.github.io/M1-FA3_botton1/';
+            };
+
+            if (btnHomeInput) {
+                btnHomeInput.addEventListener('click', goHome);
+            }
+
+            // Remove spaces functionality
+            if (btnReplaceAll && txtInput && displayInput && displayOutput) {
+                btnReplaceAll.addEventListener('click', () => {
+                    const inputText = txtInput.value || '';
+                    displayInput.textContent = inputText;
+                    const outputText = inputText.replace(/\s+/g, '');
+                    displayOutput.textContent = outputText;
+                });
+            }
+        });
+    </script>
 </body>
 </html>
