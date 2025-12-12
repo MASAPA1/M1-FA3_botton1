@@ -119,6 +119,27 @@ body {
   font-weight: 600;
 }
 
+/* Small home buttons */
+.home-small {
+  display: inline-block;
+  margin: 12px 0;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 2px solid rgba(191,75,75,0.85);
+  background: rgba(0,0,0,0.18);
+  color: rgba(191,75,75,0.98);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+
+/* Center the small home buttons */
+#btnHomeInput, #btnHomeOutput {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Responsive */
 @media (max-width: 520px) {
   .center-box {
