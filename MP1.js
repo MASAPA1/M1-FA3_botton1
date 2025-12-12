@@ -1,30 +1,154 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const inputEl = document.getElementById('txtInput');
-  const btn = document.getElementById('btnReplaceAll');
-  const outIn = document.getElementById('displayInput');
-  const outOut = document.getElementById('displayOutput');
+/* Page background (dark overlay) */
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background:
+    linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+    url('https://www.hdwallpapers.in/thumbs/2021/dark_red_black_background_design_hd_red_and_black_aesthetic-t2.jpg') center / cover no-repeat fixed;
+  color: #fff;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
 
-  const homeOutput = document.getElementById('btnHomeOutput');
+/* Centered outlined box with red glow */
+.center-box {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  width: 94%;
+  max-width: 980px;
+  padding: 64px 48px;
+  min-height: 640px;
+  border-radius: 22px;
+  background: rgba(8,8,8,0.65);
+  border: 2px solid rgba(201,40,40,0.95);
+  box-shadow:
+    0 40px 90px rgba(0,0,0,0.65),
+    0 0 60px rgba(201,40,40,0.14),
+    0 0 18px rgba(201,40,40,0.06) inset;
+  text-align: center;
+  z-index: 5;
+}
+.center-box::after {
+  content: "";
+  position: absolute;
+  inset: -22px;
+  border-radius: 26px;
+  pointer-events: none;
+  box-shadow: 0 0 110px rgba(201,40,40,0.12);
+  z-index: -1;
+}
 
-  function removeSpaces(text) {
-    return String(text || '').replace(/\s+/g, '');
+/* Heading + subtitle */
+.center-box h1 {
+  margin: 0 0 12px;
+  font-size: 56px;
+  font-weight: 800;
+  color: #bf4b4b;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+.center-box .subtitle {
+  margin: 6px 0 28px;
+  font-size: 20px;
+  color: rgba(191,75,75,0.95);
+}
+
+/* Input area */
+.input-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.input-wrap input#txtInput {
+  width: 72%;
+  max-width: 640px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  border: 2px solid rgba(191,75,75,0.85);
+  background: rgba(0,0,0,0.22);
+  color: #fff;
+  font-size: 18px;
+  outline: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+}
+
+/* Large action button */
+.big-btn {
+  display: inline-block;
+  margin: 16px 0 26px;
+  padding: 18px 40px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(180deg,#bf4b4b 0%, #a22f2f 100%);
+  color: #111;
+  font-weight: 800;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(176,72,72,0.25);
+}
+
+/* Result card (red-outlined) */
+.result-card {
+  margin: 18px auto 0;
+  width: 86%;
+  max-width: 820px;
+  padding: 28px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.15);
+  border: 2px solid rgba(191,75,75,0.6);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+.result-row {
+  margin: 18px 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 12px;
+}
+.result-row .label {
+  color: rgba(191,75,75,0.95);
+  font-weight: 800;
+  font-size: 28px;
+}
+.result-row .value {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+/* Small home buttons */
+.home-small {
+  display: inline-block;
+  margin: 12px 0;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 2px solid rgba(191,75,75,0.85);
+  background: rgba(0,0,0,0.18);
+  color: rgba(191,75,75,0.98);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+
+/* Center the small home buttons */
+#btnHomeInput, #btnHomeOutput {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive */
+@media (max-width: 520px) {
+  .center-box {
+    padding: 36px 20px;
+    min-height: 420px;
+    width: 94%;
   }
-
-  if (btn && inputEl && outIn && outOut) {
-    btn.addEventListener('click', () => {
-      const raw = inputEl.value || '';
-      outIn.textContent = raw || '-';
-      outOut.textContent = removeSpaces(raw) || '-';
-    });
-    inputEl.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') btn.click();
-    });
-  }
-
-  const homeUrl = 'https://masapa1.github.io/M1-FA3/';
-  if (homeOutput) {
-    homeOutput.addEventListener('click', () => {
-      window.location.href = homeUrl;
-    });
-  }
-});
+  .center-box h1 { font-size: 28px; }
+  .input-wrap input#txtInput { width: 92%; padding: 12px 14px; font-size: 16px; }
+  .big-btn { padding: 12px 26px; font-size: 16px; }
+  .result-row .label, .result-row .value { font-size: 18px; }
+}
