@@ -21,38 +21,40 @@
       <div class="result-row"><span class="label">Input:</span> <span id="displayInput" class="value">-</span></div>
       <div class="result-row"><span class="label">Output:</span> <span id="displayOutput" class="value">-</span></div>
     </div>
-    
+
+    <!-- Home button below result card -->
     <button id="btnHomeOutput" class="home-small">Home</button>
   </div>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const btnHomeInput = document.getElementById('btnHomeInput');
-            const btnHomeOutput = document.getElementById('btnHomeOutput');
-            const btnReplaceAll = document.getElementById('btnReplaceAll');
-            const txtInput = document.getElementById('txtInput');
-            const displayInput = document.getElementById('displayInput');
-            const displayOutput = document.getElementById('displayOutput');
+document.addEventListener('DOMContentLoaded', () => {
+  const btnReplaceAll = document.getElementById('btnReplaceAll');
+  const txtInput = document.getElementById('txtInput');
+  const displayInput = document.getElementById('displayInput');
+  const displayOutput = document.getElementById('displayOutput');
+  const btnHomeOutput = document.getElementById('btnHomeOutput');
 
-            // Home navigation buttons
-            const goHome = () => {
-                window.location.href = 'https://masapa1.github.io/M1-FA3/';
-            };
 
-            if (btnHomeInput) {
-                btnHomeInput.addEventListener('click', goHome);
-            }
+  if (btnReplaceAll && txtInput && displayInput && displayOutput) {
+    btnReplaceAll.addEventListener('click', () => {
+      const inputText = txtInput.value || '';
+      displayInput.textContent = inputText;
+      displayOutput.textContent = inputText.replace(/\s+/g, '');
+    });
+    txtInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') btnReplaceAll.click();
+    });
+  }
 
-            // Remove spaces functionality
-            if (btnReplaceAll && txtInput && displayInput && displayOutput) {
-                btnReplaceAll.addEventListener('click', () => {
-                    const inputText = txtInput.value || '';
-                    displayInput.textContent = inputText;
-                    const outputText = inputText.replace(/\s+/g, '');
-                    displayOutput.textContent = outputText;
-                });
-            }
-        });
-    </script>
+  // Home navigation (bottom button)
+  const goHomeUrl = 'https://masapa1.github.io/M1-FA3/';
+  if (btnHomeOutput) {
+    btnHomeOutput.addEventListener('click', () => {
+      // navigate in same tab:
+      window.location.href = goHomeUrl;
+      
+    });
+  }
+});
+</script>
 </body>
 </html>
-
