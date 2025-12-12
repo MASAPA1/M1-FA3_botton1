@@ -13,15 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return String(text || '').replace(/\s+/g, '');
   }
 
-  function escapeHtml(s) {
-    return String(s)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-  }
-
   btn.addEventListener('click', () => {
     const raw = inputEl.value || '';
     const result = removeSpaces(raw);
@@ -33,8 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Enter') btn.click();
   });
 
-  // Home buttons — change URL to desired home page
-  const homeUrl = 'index.html'; // update to your desired home URL
-  if (homeInput) homeInput.addEventListener('click', () => { window.location.href = homeUrl; });
-  if (homeOutput) homeOutput.addEventListener('click', () => { window.location.href = homeUrl; });
+  const homeUrl = 'https://masapa1.github.io/M1-FA3/';
+
+  if (homeInput) {
+    homeInput.addEventListener('click', () => {
+      window.location.href = homeUrl;
+    });
+  }
+
+  if (homeOutput) {
+    homeOutput.addEventListener('click', () => {
+      window.location.href = homeUrl;
+    });
+  }
 });
