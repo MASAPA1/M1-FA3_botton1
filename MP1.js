@@ -7,34 +7,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const homeInput = document.getElementById('btnHomeInput');
   const homeOutput = document.getElementById('btnHomeOutput');
 
-  if (!inputEl || !btn || !outIn || !outOut) return;
-
   function removeSpaces(text) {
     return String(text || '').replace(/\s+/g, '');
   }
 
-  btn.addEventListener('click', () => {
-    const raw = inputEl.value || '';
-    const result = removeSpaces(raw);
-    outIn.textContent = raw || '-';
-    outOut.textContent = result || '-';
-  });
+  
+  if (btn && inputEl && outIn && outOut) {
+    btn.addEventListener('click', () => {
+      const raw = inputEl.value || '';
+      outIn.textContent = raw || '-';
+      outOut.textContent = removeSpaces(raw) || '-';
+    });
+    inputEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') btn.click();
+    });
+  }
 
-  inputEl.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') btn.click();
-  });
 
   const homeUrl = 'https://masapa1.github.io/M1-FA3/';
-
-  if (homeInput) {
-    homeInput.addEventListener('click', () => {
-      window.location.href = homeUrl;
-    });
-  }
-
-  if (homeOutput) {
-    homeOutput.addEventListener('click', () => {
-      window.location.href = homeUrl;
-    });
-  }
+  if (homeInput) homeInput.addEventListener('click', () => { window.location.href = homeUrl; });
+  if (homeOutput) homeOutput.addEventListener('click', () => { window.location.href = homeUrl; });
 });
