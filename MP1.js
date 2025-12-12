@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const outIn = document.getElementById('displayInput');
   const outOut = document.getElementById('displayOutput');
 
+  const homeInput = document.getElementById('btnHomeInput');
+  const homeOutput = document.getElementById('btnHomeOutput');
+
   if (!inputEl || !btn || !outIn || !outOut) return;
 
   function removeSpaces(text) {
@@ -29,4 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
   inputEl.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') btn.click();
   });
+
+  // Home buttons — change URL to desired home page
+  const homeUrl = 'index.html'; // update to your desired home URL
+  if (homeInput) homeInput.addEventListener('click', () => { window.location.href = homeUrl; });
+  if (homeOutput) homeOutput.addEventListener('click', () => { window.location.href = homeUrl; });
 });
