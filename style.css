@@ -1,0 +1,220 @@
+/* Full-page background (remote image) */
+:root{
+  /* tweak these to align buttons precisely over the pills */
+  --mp1-left: 32%;   /* horizontal position for MP1 button */
+  --mp1-top: 46%;    /* vertical position for MP1 button - moved up from 62% */
+  --mp2-left: 71%;   /* horizontal position for MP2 button */
+  --mp2-top: 52%;    /* vertical position for MP2 button */
+  --pill-width: 160px; /* visual width of a pill button */
+  --pill-height: 56px;
+}
+
+* { box-sizing: border-box; }
+
+html,body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #fff;
+  display: block;
+  background:
+    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+    url('https://miro.medium.com/v2/resize:fit:1200/1*eeomGY2FwrjftFqMEXLycA.jpeg') center / cover no-repeat fixed;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shared pill button styles */
+.pill-button {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: var(--pill-width);
+  height: var(--pill-height);
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06);
+  transition: box-shadow .15s ease;
+  backdrop-filter: blur(2px);
+}
+
+/* MP1 (left, red) — rotated 60 degrees */
+#mp1 {
+  left: var(--mp1-left);
+  top: var(--mp1-top);
+  transform: translate(-50%, -50%) rotate(-25deg);
+  transform-origin: center;
+  background: linear-gradient(180deg,#ff4b4b 0%, #b91c1c 100%);
+  color: #fff;
+}
+
+/* MP2 (right, blue/teal) */
+#mp2 {
+  left: var(--mp2-left);
+  top: var(--mp2-top);
+  transform: translate(-50%, -50%) rotate(33deg);
+  background: linear-gradient(180deg,#34d7ff 0%, #006ea6 100%);
+  color: #fff;
+}
+
+/* Hover / focus states */
+.pill-button:hover,
+.pill-button:focus {
+  /* do not change transform on hover */
+  box-shadow: 0 14px 34px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.06);
+  outline: none;
+}
+
+/* MP1 hover: preserve base rotation, do not animate or scale */
+#mp1:hover,
+#mp1:focus {
+  box-shadow: 0 14px 34px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.06);
+  outline: none;
+  /* no transform here */
+}
+
+/* Make buttons smaller on narrow screens and adjust positions */
+@media (max-width: 520px) {
+  :root{
+    --pill-width: 120px;
+    --pill-height: 44px;
+    --mp1-left: 26%;
+    --mp1-top: 64%;
+    --mp2-left: 74%;
+    --mp2-top: 64%;
+  }
+  .pill-button { font-size: 14px; }
+}
+
+/* Optional accessibility focus ring */
+.pill-button:focus-visible {
+  box-shadow: 0 0 0 4px rgba(14,165,233,0.18), 0 8px 22px rgba(0,0,0,0.45);
+}
+
+/* Background and layout */
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  color: #fff;
+  background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    url('https://miro.medium.com/v2/resize:fit:1200/1*eeomGY2FwrjftFqMEXLycA.jpeg') center / cover no-repeat fixed;
+}
+
+/* Semi-transparent centered card */
+.container {
+background: rgba(0, 0, 0, 0.35);
+backdrop-filter: blur(3px);
+border-radius: 12px;
+padding: 24px;
+max-width: 520px;
+width: 100%;
+box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+}
+
+/* Headings and text */
+h1 {
+margin: 0 0 16px;
+font-size: 20px;
+font-weight: 600;
+color: #fff;
+}
+
+/* Input, button, and output */
+#txtInput {
+width: 100%;
+padding: 10px 12px;
+border-radius: 8px;
+border: 1px solid rgba(255,255,255,0.18);
+background: rgba(0,0,0,0.25);
+color: #fff;
+outline: none;
+font-size: 14px;
+box-sizing: border-box;
+}
+
+#txtInput::placeholder {
+color: rgba(255,255,255,0.7);
+}
+
+#btnReplaceAll {
+margin-top: 12px;
+padding: 10px 14px;
+border-radius: 8px;
+border: none;
+color: #fff;
+background: #0ea5e9;
+cursor: pointer;
+font-size: 14px;
+}
+
+#btnReplaceAll:hover {
+background: #0284c7;
+}
+
+#txtOutput {
+margin-top: 12px;
+padding: 10px 12px;
+border-radius: 8px;
+background: rgba(0,0,0,0.25);
+border: 1px solid rgba(255,255,255,0.12);
+min-height: 40px;
+}
+
+/* Centered text overlay */
+.center-text {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 6;
+  pointer-events: none;
+  color: #fff;
+  text-shadow: 0 4px 18px rgba(0,0,0,0.6);
+}
+
+.center-text h1 {
+  margin: 0;
+  font-size: 100px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.center-text .subtitle {
+  margin: 8px 0 0;
+  font-size: 20px;
+  opacity: 0.95;
+}
+
+/* Responsive sizes */
+@media (max-width: 520px) {
+  .center-text h1 { font-size: 22px; }
+  .center-text .subtitle { font-size: 14px; }
+  .center-text { top: 38%; }
+}
+
+/* Small screens */
+@media (max-width: 420px) {
+.container {
+padding: 16px;
+}
+
+#btnReplaceAll {
+width: 100%;
+}
+}

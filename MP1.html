@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MP1 / MP2</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="center-text">
+    <h1>M1-FA3</h1>
+    <p class="subtitle">choose red pill or blue pill</p>
+  </div>
+
+  <button id="mp1" class="pill-button">MP1</button>
+  <button id="mp2" class="pill-button">MP2</button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const txtInput = document.getElementById('txtInput');
+      const btnReplaceAll = document.getElementById('btnReplaceAll');
+      const txtOutput = document.getElementById('txtOutput');
+
+      const validateEmail = (email) => {
+        const e = (email || '').trim();
+        return e.includes('@') ? 'Valid' : 'Invalid';
+      };
+
+      btnReplaceAll.addEventListener('click', () => {
+        const input = txtInput.value || '';
+        txtOutput.textContent = validateEmail(input);
+      });
+
+      txtInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') btnReplaceAll.click();
+      });
+    });
+  </script>
+</body>
+</html>
